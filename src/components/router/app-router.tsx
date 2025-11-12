@@ -1,3 +1,4 @@
+import RoutePaths from 'constants/route-paths';
 import ErrorBoundary from 'components/error-boundary';
 import NotFound from 'components/not-found';
 import albumRoutes from 'modules/album/album-routes';
@@ -8,7 +9,7 @@ import AppLayout from '../layout/app-layout';
 
 const appRoutes: RouteObject[] = [
   {
-    path: '/',
+    path: RoutePaths.index,
     Component: AppLayout,
     children: [...albumRoutes, ...searchRoutes, ...favouritesRoutes],
     ErrorBoundary: ErrorBoundary,

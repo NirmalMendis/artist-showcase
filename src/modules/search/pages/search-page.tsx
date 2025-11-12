@@ -1,4 +1,4 @@
-import { Box, Heading, Input, SimpleGrid, Text, VStack } from '@chakra-ui/react';
+import { Box, Container, Heading, Input, SimpleGrid, Text, VStack } from '@chakra-ui/react';
 import Spinner from 'components/ui/spinner';
 import { useEffect, useMemo, useState } from 'react';
 import AlbumCard from '../../../components/album-card';
@@ -76,75 +76,77 @@ const SearchPage = () => {
   );
 
   return (
-    <VStack gap={6} p={4} align="stretch">
-      <Heading as="h1" size="lg">
-        Search
-      </Heading>
-      <Input placeholder="Search for albums or tracks or artists..." value={searchText} onChange={(e) => setSearchText(e.target.value)} size="lg" />
+    <Container maxW="container.xl" py={8}>
+      <VStack gap={6} align="stretch">
+        <Text fontSize="2xl" fontWeight="bold">
+          Search
+        </Text>
+        <Input placeholder="Search for albums or tracks or artists..." value={searchText} onChange={(e) => setSearchText(e.target.value)} size="lg" />
 
-      {debouncedSearchText && (
-        <>
-          <Box display="flex" flexDirection="column" gap={4}>
-            <Heading as="h2" size="md">
-              Albums
-            </Heading>
-            {mappedAlbums.length > 0 ? (
-              <SimpleGrid columns={{ base: 1, md: 2, lg: 3, xl: 4 }} gap={4}>
-                {mappedAlbums.map((album, index) => (
-                  <AlbumCard key={album.mbid + index || index} album={album} />
-                ))}
-              </SimpleGrid>
-            ) : (
-              <Text>No albums found.</Text>
-            )}
-            {albumTotalPages > 1 && (
-              <Box display="flex" justifyContent="flex-end">
-                <CustomPagination count={albumTotalPages} pageSize={1} page={albumPage} onPageChange={(details) => setAlbumPage(details.page)} />
-              </Box>
-            )}
-          </Box>
-          <Box display="flex" flexDirection="column" gap={4}>
-            <Heading as="h2" size="md">
-              Tracks
-            </Heading>
-            {mappedTracks.length > 0 ? (
-              <SimpleGrid columns={{ base: 1, md: 2, lg: 3, xl: 4 }} gap={4}>
-                {mappedTracks.map((track, index) => (
-                  <TrackCard key={track.url || index} track={track} index={index} />
-                ))}
-              </SimpleGrid>
-            ) : (
-              <Text>No tracks found.</Text>
-            )}
-            {trackTotalPages > 1 && (
-              <Box display="flex" justifyContent="flex-end">
-                <CustomPagination count={trackTotalPages} pageSize={1} page={trackPage} onPageChange={(details) => setTrackPage(details.page)} />
-              </Box>
-            )}
-          </Box>
-          <Box display="flex" flexDirection="column" gap={4}>
-            <Heading as="h2" size="md">
-              Artists
-            </Heading>
-            {artists.length > 0 ? (
-              <SimpleGrid columns={{ base: 1, md: 2, lg: 3, xl: 4 }} gap={4}>
-                {artists.map((artist, index) => (
-                  <ArtistCard key={artist.mbid || index} artist={artist} />
-                ))}
-              </SimpleGrid>
-            ) : (
-              <Text>No artists found.</Text>
-            )}
-            {artistTotalPages > 1 && (
-              <Box display="flex" justifyContent="flex-end">
-                <CustomPagination count={artistTotalPages} pageSize={1} page={artistPage} onPageChange={(details) => setArtistPage(details.page)} />
-              </Box>
-            )}
-          </Box>
-        </>
-      )}
-      <Spinner open={albumLoading || artistLoading || trackLoading} />
-    </VStack>
+        {debouncedSearchText && (
+          <>
+            <Box display="flex" flexDirection="column" gap={4}>
+              <Heading as="h2" size="md">
+                Albums
+              </Heading>
+              {mappedAlbums.length > 0 ? (
+                <SimpleGrid columns={{ base: 1, md: 2, lg: 3, xl: 4 }} gap={4}>
+                  {mappedAlbums.map((album, index) => (
+                    <AlbumCard key={album.mbid + index || index} album={album} />
+                  ))}
+                </SimpleGrid>
+              ) : (
+                <Text>No albums found.</Text>
+              )}
+              {albumTotalPages > 1 && (
+                <Box display="flex" justifyContent="flex-end">
+                  <CustomPagination count={albumTotalPages} pageSize={1} page={albumPage} onPageChange={(details) => setAlbumPage(details.page)} />
+                </Box>
+              )}
+            </Box>
+            <Box display="flex" flexDirection="column" gap={4}>
+              <Heading as="h2" size="md">
+                Tracks
+              </Heading>
+              {mappedTracks.length > 0 ? (
+                <SimpleGrid columns={{ base: 1, md: 2, lg: 3, xl: 4 }} gap={4}>
+                  {mappedTracks.map((track, index) => (
+                    <TrackCard key={track.url || index} track={track} index={index} />
+                  ))}
+                </SimpleGrid>
+              ) : (
+                <Text>No tracks found.</Text>
+              )}
+              {trackTotalPages > 1 && (
+                <Box display="flex" justifyContent="flex-end">
+                  <CustomPagination count={trackTotalPages} pageSize={1} page={trackPage} onPageChange={(details) => setTrackPage(details.page)} />
+                </Box>
+              )}
+            </Box>
+            <Box display="flex" flexDirection="column" gap={4}>
+              <Heading as="h2" size="md">
+                Artists
+              </Heading>
+              {artists.length > 0 ? (
+                <SimpleGrid columns={{ base: 1, md: 2, lg: 3, xl: 4 }} gap={4}>
+                  {artists.map((artist, index) => (
+                    <ArtistCard key={artist.mbid || index} artist={artist} />
+                  ))}
+                </SimpleGrid>
+              ) : (
+                <Text>No artists found.</Text>
+              )}
+              {artistTotalPages > 1 && (
+                <Box display="flex" justifyContent="flex-end">
+                  <CustomPagination count={artistTotalPages} pageSize={1} page={artistPage} onPageChange={(details) => setArtistPage(details.page)} />
+                </Box>
+              )}
+            </Box>
+          </>
+        )}
+        <Spinner open={albumLoading || artistLoading || trackLoading} />
+      </VStack>
+    </Container>
   );
 };
 

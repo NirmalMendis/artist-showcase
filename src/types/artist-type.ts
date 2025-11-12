@@ -27,12 +27,11 @@ export interface Artist {
   mbid?: string;
   url?: string;
   image?: Image[];
-  streamable?: string;
   ontour?: string;
   stats?: Stats;
   bio?: Bio;
 }
 
-export interface ArtistSearchResult extends Pick<Artist, 'name' | 'mbid' | 'url' | 'image' | 'streamable'> {
+export interface ArtistSearchResult extends Pick<Artist, 'name' | 'mbid' | 'url' | 'image'> {
   listeners: string;
 }

@@ -1,5 +1,5 @@
 const RoutePaths = {
-  index: '',
+  index: '/',
   album: {
     index: 'albums',
     list: 'list',

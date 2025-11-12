@@ -1,10 +1,5 @@
 import { Image } from './generic-types';
 
-export interface Streamable {
-  fulltrack?: string;
-  '#text'?: string;
-}
-
 export interface TrackArtist {
   name: string;
   url?: string;
@@ -16,7 +11,6 @@ export interface TrackAttr {
 }
 
 export interface Track {
-  streamable?: Streamable;
   duration?: number;
   url?: string;
   name: string;

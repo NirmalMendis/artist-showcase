@@ -1,5 +1,4 @@
 import { Box, HStack, Heading, Text } from '@chakra-ui/react';
-import React from 'react';
 import { Link as RouterLink } from 'react-router';
 import RoutePaths from '../../constants/route-paths';
 
@@ -16,7 +15,7 @@ const Navigation = () => {
         <RouterLink to={`/${RoutePaths.album.index}/${RoutePaths.album.list}`}>
           <Text color="blue.600">Albums</Text>
         </RouterLink>
-        <RouterLink to="/favorites">
+        <RouterLink to={`/${RoutePaths.favourite.index}/${RoutePaths.favourite.list}`}>
           <Text color="blue.600">Favorites</Text>
         </RouterLink>
       </HStack>
