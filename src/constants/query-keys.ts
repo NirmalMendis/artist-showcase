@@ -8,6 +8,7 @@ export const QueryKeys = {
     search: 'album-search',
   },
   track: {
+    getInfo: 'track-get-info',
     search: 'track-search',
   },
 };

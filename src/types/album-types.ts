@@ -23,6 +23,7 @@ export interface Track {
   ['@attr']?: TrackAttr;
   artist?: TrackArtist;
   image?: Image[];
+  album?: string;
 }
 
 export interface Tracks {

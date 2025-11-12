@@ -8,5 +8,9 @@ const RoutePaths = {
   search: {
     index: 'search',
   },
+  favourite: {
+    index: 'favorites',
+    list: 'list',
+  },
 };
 export default RoutePaths;
