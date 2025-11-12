@@ -1,4 +1,4 @@
-import { type UseQueryResult, keepPreviousData, useQuery } from '@tanstack/react-query';
+import { type UseQueryResult, useQuery } from '@tanstack/react-query';
 import { TrackSearchResult } from 'types/track-types';
 import { QueryKeys } from '../../../constants/query-keys';
 import { apiService } from '../api-service';
@@ -36,7 +36,6 @@ const useSearchTrack = ({ track, artist, page, limit }: SearchTrackRequest, enab
         signal,
       }),
     enabled: enabled ?? !!track,
-    placeholderData: keepPreviousData,
   });
 };
 

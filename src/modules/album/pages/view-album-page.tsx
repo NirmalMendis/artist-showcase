@@ -3,7 +3,7 @@ import ErrorCard from 'components/error-card';
 import Spinner from 'components/ui/spinner';
 import React from 'react';
 import { useParams } from 'react-router';
-import useGetAlbum from 'services/api/artist/use-get-album';
+import useGetAlbum from 'services/api/album/use-get-album';
 import TrackCard from '../../../components/track-card';
 
 const ViewAlbumPage = () => {

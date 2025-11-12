@@ -8,10 +8,11 @@ interface ErrorOrNotFoundProps {
 
 const ErrorCard: React.FC<ErrorOrNotFoundProps> = ({ error }) => {
   if (error) {
-    let errorMsg = 'Something went wrong.';
+    let errorMsg = error.message || 'Something went wrong.';
     if (error instanceof AxiosError) {
       errorMsg = error.response?.data?.message || error.message;
     }
+
     return (
       <Container centerContent py={8}>
         <Text color="red.500"> {errorMsg}</Text>

@@ -4,23 +4,28 @@ import { Artist } from 'types/artist-type';
 import { QueryKeys } from '../../../constants/query-keys';
 import { apiService } from '../api-service';
 
-export type GetAlbumByArtistRequest = Pick<Artist, 'name' | 'mbid'> & {
+export type GetAlbumByArtistRequest = Pick<Partial<Artist>, 'name' | 'mbid'> & {
   page?: number;
   limit?: number;
 };
 
-export type GetAlbumByArtistResponse = {
-  topalbums: {
-    album?: TopAlbum[];
-    ['@attr']?: {
-      artist: string;
-      page: string;
-      perPage: string;
-      total: string;
-      totalPages: string;
+export type GetAlbumByArtistResponse =
+  | {
+      topalbums?: {
+        album?: TopAlbum[];
+        ['@attr']?: {
+          artist: string;
+          page: string;
+          perPage: string;
+          total: string;
+          totalPages: string;
+        };
+      };
+    }
+  | {
+      error: number;
+      message: string;
     };
-  };
-};
 
 const useGetAlbumsByArtist = (
   { name, mbid, page, limit }: GetAlbumByArtistRequest,

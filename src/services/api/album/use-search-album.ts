@@ -1,4 +1,4 @@
-import { type UseQueryResult, keepPreviousData, useQuery } from '@tanstack/react-query';
+import { type UseQueryResult, useQuery } from '@tanstack/react-query';
 import { AlbumSearchResult } from 'types/album-types';
 import { QueryKeys } from '../../../constants/query-keys';
 import { apiService } from '../api-service';
@@ -34,7 +34,6 @@ const useSearchAlbum = ({ album, page, limit }: SearchAlbumRequest, enabled?: bo
         signal,
       }),
     enabled: enabled ?? !!album,
-    placeholderData: keepPreviousData,
   });
 };
 

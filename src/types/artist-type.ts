@@ -32,3 +32,7 @@ export interface Artist {
   stats?: Stats;
   bio?: Bio;
 }
+
+export interface ArtistSearchResult extends Pick<Artist, 'name' | 'mbid' | 'url' | 'image' | 'streamable'> {
+  listeners: string;
+}
