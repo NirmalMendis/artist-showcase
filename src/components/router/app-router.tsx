@@ -1,3 +1,5 @@
+import ErrorBoundary from 'components/error-boundary';
+import NotFound from 'components/not-found';
 import albumRoutes from 'modules/album/album-routes';
 import favouritesRoutes from 'modules/favourite/favourites-routes';
 import searchRoutes from 'modules/search/search-routes';
@@ -9,12 +11,13 @@ const appRoutes: RouteObject[] = [
     path: '/',
     Component: AppLayout,
     children: [...albumRoutes, ...searchRoutes, ...favouritesRoutes],
+    ErrorBoundary: ErrorBoundary,
   },
 ];
 
 const fallBackRoute: RouteObject = {
   path: '*',
-  element: <div>404 Not Found</div>,
+  element: <NotFound />,
 };
 
 const routes = [...appRoutes, fallBackRoute];
