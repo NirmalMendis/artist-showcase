@@ -1,5 +1,5 @@
 import { DefaultPageLimit } from 'constants/defaults';
-import { Container, Input, SimpleGrid, Text, VStack } from '@chakra-ui/react';
+import { Box, Container, Input, SimpleGrid, Text, VStack } from '@chakra-ui/react';
 import CustomPagination from 'components/ui/custom-pagination';
 import Spinner from 'components/ui/spinner';
 import { useEffect, useState } from 'react';
@@ -64,7 +64,9 @@ const ListAlbumsPage = () => {
             <AlbumCard album={album} key={album.mbid || index} />
           ))}
         </SimpleGrid>
-        {totalPages > 1 && <CustomPagination count={totalPages} pageSize={1} page={page} onPageChange={(details) => setPage(details.page)} />}
+        <Box display="flex" justifyContent="flex-end">
+          {totalPages > 1 && <CustomPagination count={totalPages} pageSize={1} page={page} onPageChange={(details) => setPage(details.page)} />}
+        </Box>
       </VStack>
       <Spinner open={isFetching} />
     </Container>

@@ -6,7 +6,7 @@ interface ErrorOrNotFoundProps {
   error?: Error | null;
 }
 
-const ErrorCard: React.FC<ErrorOrNotFoundProps> = ({ error }) => {
+const ErrorCard = ({ error }: ErrorOrNotFoundProps) => {
   if (error) {
     let errorMsg = error.message || 'Something went wrong.';
     if (error instanceof AxiosError) {

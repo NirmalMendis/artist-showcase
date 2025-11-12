@@ -1,6 +1,6 @@
 import { Box, Heading, Input, SimpleGrid, Text, VStack } from '@chakra-ui/react';
 import Spinner from 'components/ui/spinner';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import AlbumCard from '../../../components/album-card';
 import ArtistCard from '../../../components/artist-card';
 import TrackCard from '../../../components/track-card';
@@ -40,8 +40,8 @@ const SearchPage = () => {
     !!debouncedSearchText,
   );
 
-  const albums = albumResults?.results?.albummatches?.album || [];
-  const tracks = trackResults?.results?.trackmatches?.track || [];
+  const albums = useMemo(() => albumResults?.results?.albummatches?.album || [], [albumResults]);
+  const tracks = useMemo(() => trackResults?.results?.trackmatches?.track || [], [trackResults]);
   const artists = artistResults?.results?.artistmatches?.artist || [];
 
   const albumTotal = parseInt(albumResults?.results?.['opensearch:totalResults'] || '0');
@@ -51,21 +51,29 @@ const SearchPage = () => {
   const trackTotalPages = Math.ceil(trackTotal / DefaultPageLimit);
   const artistTotalPages = Math.ceil(artistTotal / DefaultPageLimit);
 
-  const mappedAlbums = albums.map((album: AlbumSearchResult) => ({
-    name: album.name,
-    mbid: album.mbid,
-    url: album.url,
-    artist: { name: album.artist },
-    image: album.image,
-  }));
+  const mappedAlbums = useMemo(
+    () =>
+      albums.map((album: AlbumSearchResult) => ({
+        name: album.name,
+        mbid: album.mbid,
+        url: album.url,
+        artist: { name: album.artist },
+        image: album.image,
+      })),
+    [albums],
+  );
 
-  const mappedTracks = tracks.map((track: TrackSearchResult) => ({
-    name: track.name,
-    url: track.url,
-    streamable: { '#text': track.streamable },
-    artist: { name: track.artist },
-    image: track.image,
-  }));
+  const mappedTracks = useMemo(
+    () =>
+      tracks.map((track: TrackSearchResult) => ({
+        name: track.name,
+        url: track.url,
+        streamable: { '#text': track.streamable },
+        artist: { name: track.artist },
+        image: track.image,
+      })),
+    [tracks],
+  );
 
   return (
     <VStack gap={6} p={4} align="stretch">
@@ -83,14 +91,16 @@ const SearchPage = () => {
             {mappedAlbums.length > 0 ? (
               <SimpleGrid columns={{ base: 1, md: 2, lg: 3, xl: 4 }} gap={4}>
                 {mappedAlbums.map((album, index) => (
-                  <AlbumCard key={album.mbid || index} album={album} />
+                  <AlbumCard key={album.mbid + index || index} album={album} />
                 ))}
               </SimpleGrid>
             ) : (
               <Text>No albums found.</Text>
             )}
             {albumTotalPages > 1 && (
-              <CustomPagination count={albumTotalPages} pageSize={1} page={albumPage} onPageChange={(details) => setAlbumPage(details.page)} />
+              <Box display="flex" justifyContent="flex-end">
+                <CustomPagination count={albumTotalPages} pageSize={1} page={albumPage} onPageChange={(details) => setAlbumPage(details.page)} />
+              </Box>
             )}
           </Box>
           <Box display="flex" flexDirection="column" gap={4}>
@@ -107,7 +117,9 @@ const SearchPage = () => {
               <Text>No tracks found.</Text>
             )}
             {trackTotalPages > 1 && (
-              <CustomPagination count={trackTotalPages} pageSize={1} page={trackPage} onPageChange={(details) => setTrackPage(details.page)} />
+              <Box display="flex" justifyContent="flex-end">
+                <CustomPagination count={trackTotalPages} pageSize={1} page={trackPage} onPageChange={(details) => setTrackPage(details.page)} />
+              </Box>
             )}
           </Box>
           <Box display="flex" flexDirection="column" gap={4}>
@@ -124,7 +136,9 @@ const SearchPage = () => {
               <Text>No artists found.</Text>
             )}
             {artistTotalPages > 1 && (
-              <CustomPagination count={artistTotalPages} pageSize={1} page={artistPage} onPageChange={(details) => setArtistPage(details.page)} />
+              <Box display="flex" justifyContent="flex-end">
+                <CustomPagination count={artistTotalPages} pageSize={1} page={artistPage} onPageChange={(details) => setArtistPage(details.page)} />
+              </Box>
             )}
           </Box>
         </>

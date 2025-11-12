@@ -1,6 +1,6 @@
 import RoutePaths from 'constants/route-paths';
 import { Box, Card, Image as ChakraImage, HStack, Icon, Text, VStack } from '@chakra-ui/react';
-import React from 'react';
+import { memo } from 'react';
 import { LuUser } from 'react-icons/lu';
 import { Link } from 'react-router';
 import { ArtistSearchResult } from '../types/artist-type';
@@ -10,7 +10,7 @@ interface ArtistCardProps {
   artist: ArtistSearchResult;
 }
 
-const ArtistCard: React.FC<ArtistCardProps> = ({ artist }) => {
+const ArtistCard = ({ artist }: ArtistCardProps) => {
   const imageUrl = artist.image?.find((img: Image) => img.size === 'medium')?.['#text'] || '';
   const artistId = artist.mbid || encodeURIComponent(artist.name);
 
@@ -20,7 +20,7 @@ const ArtistCard: React.FC<ArtistCardProps> = ({ artist }) => {
         <Card.Body>
           <HStack gap={4}>
             {imageUrl ? (
-              <ChakraImage src={imageUrl} alt={artist.name} boxSize="60px" objectFit="cover" borderRadius="md" />
+              <ChakraImage src={imageUrl} alt={artist.name} boxSize="60px" objectFit="cover" borderRadius="md" loading="lazy" />
             ) : (
               <Box boxSize="60px" borderRadius="md" bg="gray.100" display="flex" alignItems="center" justifyContent="center">
                 <Icon as={LuUser} boxSize="24px" color="gray.500" />
@@ -39,4 +39,4 @@ const ArtistCard: React.FC<ArtistCardProps> = ({ artist }) => {
   );
 };
 
-export default ArtistCard;
+export default memo(ArtistCard);

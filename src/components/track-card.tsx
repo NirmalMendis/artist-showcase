@@ -1,4 +1,5 @@
 import { Box, Image as ChakraImage, HStack, Icon, IconButton, Text, VStack } from '@chakra-ui/react';
+import { memo } from 'react';
 import { LuHeart } from 'react-icons/lu';
 import { LuMusic } from 'react-icons/lu';
 import { Image } from 'types/generic-types';
@@ -12,7 +13,7 @@ interface TrackCardProps {
   onClick?: () => void;
 }
 
-const TrackCard: React.FC<TrackCardProps> = ({ track, index, onClick }) => {
+const TrackCard = ({ track, index, onClick }: TrackCardProps) => {
   const imageUrl = track.image?.find((img: Image) => img.size === 'medium')?.['#text'] || '';
   const { isFavourite, toggleFavourite } = useFavouritesStore();
   const trackObj = { name: track.name, artist: track.artist?.name || 'unknown' };
@@ -20,7 +21,7 @@ const TrackCard: React.FC<TrackCardProps> = ({ track, index, onClick }) => {
   return (
     <HStack gap={4} p={4} borderWidth="1px" borderRadius="md" cursor={onClick ? 'pointer' : 'default'} onClick={onClick}>
       {imageUrl ? (
-        <ChakraImage src={imageUrl} alt={track.name} boxSize="60px" objectFit="cover" borderRadius="md" />
+        <ChakraImage src={imageUrl} alt={track.name} boxSize="60px" objectFit="cover" borderRadius="md" loading="lazy" />
       ) : (
         <Box boxSize="60px" borderRadius="md" bg="gray.100" display="flex" alignItems="center" justifyContent="center">
           <Icon as={LuMusic} boxSize="24px" color="gray.500" />
@@ -58,4 +59,4 @@ const TrackCard: React.FC<TrackCardProps> = ({ track, index, onClick }) => {
   );
 };
 
-export default TrackCard;
+export default memo(TrackCard);

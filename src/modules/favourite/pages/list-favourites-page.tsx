@@ -1,6 +1,6 @@
 import RoutePaths from 'constants/route-paths';
 import { Container, SimpleGrid, Text, VStack } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router';
 import ErrorCard from '../../../components/error-card';
 import TrackCard from '../../../components/track-card';
@@ -38,21 +38,25 @@ const ListFavouritesPage = () => {
 
   const queries = useGetTracks(favArray);
 
-  const isFetching = queries.some((q) => q.isFetching);
-  const errors = queries.filter((q) => q.error).map((q) => q.error);
-  const tracks: Track[] = queries
-    .filter((q) => q.data)
-    .map((q) => {
-      const detailed = q.data!.track;
-      return {
-        name: detailed.name,
-        artist: { name: detailed.artist.name, mbid: detailed.artist.mbid, url: detailed.artist.url },
-        duration: Math.floor(parseInt(detailed.duration) / 1000) || 0,
-        url: detailed.url,
-        image: detailed.album?.image,
-        album: detailed.album?.title,
-      };
-    });
+  const isFetching = useMemo(() => queries.some((q) => q.isFetching), [queries]);
+  const errors = useMemo(() => queries.filter((q) => q.error).map((q) => q.error), [queries]);
+  const tracks: Track[] = useMemo(
+    () =>
+      queries
+        .filter((q) => q.data)
+        .map((q) => {
+          const detailed = q.data!.track;
+          return {
+            name: detailed.name,
+            artist: { name: detailed.artist.name, mbid: detailed.artist.mbid, url: detailed.artist.url },
+            duration: Math.floor(parseInt(detailed.duration) / 1000) || 0,
+            url: detailed.url,
+            image: detailed.album?.image,
+            album: detailed.album?.title,
+          };
+        }),
+    [queries],
+  );
 
   if (errors.length > 0) {
     return <ErrorCard error={errors[0]} />;

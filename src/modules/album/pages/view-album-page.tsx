@@ -31,7 +31,7 @@ const ViewAlbumPage = () => {
       {album ? (
         <VStack gap={6} align="stretch">
           <Stack direction={{ base: 'column', md: 'row' }} gap={6} align={{ base: 'center', md: 'start' }}>
-            <Image src={imageUrl} alt={album.name} boxSize={{ base: '200px', md: '300px' }} objectFit="cover" borderRadius="md" />
+            <Image src={imageUrl} alt={album.name} boxSize={{ base: '200px', md: '300px' }} objectFit="cover" borderRadius="md" loading="lazy" />
             <VStack align="start" gap={4} flex={1}>
               <Text fontSize="3xl" fontWeight="bold">
                 {album.name}
