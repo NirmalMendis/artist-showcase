@@ -1,46 +1,90 @@
-# Getting Started with Create React App
+# Artist Showcase
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React-based web application that showcases music artists, albums, and tracks using the Last.fm API. Built with TypeScript, Chakra UI, and React Query for a modern, responsive user experience.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- Browse and search for artists
+- View artist albums and tracks
+- Search albums and tracks
+- Add favorites to a personal collection
+- Responsive design with dark/light mode support
+- Fast and efficient API calls with caching
 
-### `npm start`
+## Prerequisites
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Node.js (version 16 or higher)
+- npm or yarn package manager
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Setup
 
-### `npm test`
+1. **Clone the repository:**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+   ```bash
+   git clone https://github.com/NirmalMendis/artist-showcase.git
+   cd artist-showcase
+   ```
 
-### `npm run build`
+2. **Install dependencies:**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   ```bash
+   npm install
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. **Set up environment variables:**
+   - Copy the example environment file:
+     ```bash
+     cp .env.example .env
+     ```
+   - The `.env` file should contain your Last.fm API key and API URL (already configured in the example)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Running the Application
 
-### `npm run eject`
+To start the development server:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```bash
+npm start
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The application will open in your browser at [http://localhost:3000](http://localhost:3000).
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Building for Production
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+To build the application for production:
 
-## Learn More
+```bash
+npm run build
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The build artifacts will be stored in the `build/` directory.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Code Quality
+
+- **Linting:** `npm run lint`
+- **Fix linting issues:** `npm run lint:fix`
+- **Format code:** `npm run format`
+- **Check formatting:** `npm run format:check`
+
+## Technologies Used
+
+- **React 19** - UI library
+- **TypeScript** - Type safety
+- **Chakra UI** - Component library
+- **React Query** - Data fetching and caching
+- **Zustand** - State management
+- **React Router** - Client-side routing
+- **Axios** - HTTP client
+- **Last.fm API** - Music data source
+
+## Project Structure
+
+```
+src/
+├── components/          # Reusable UI components
+├── modules/            # Feature modules (album, search, favourites)
+├── services/           # API services and hooks
+├── store/              # Zustand stores
+├── theme/              # Chakra UI theme configuration
+├── types/              # TypeScript type definitions
+└── constants/          # Application constants
+```
