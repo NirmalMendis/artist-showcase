@@ -36,7 +36,7 @@ A React-based web application that showcases music artists, albums, and tracks u
      ```bash
      cp .env.example .env
      ```
-   - The `.env` file should contain your Last.fm API key and API URL (already configured in the example)
+   - The `.env` file should contain your Last.fm API key and API URL.
 
 ## Running the Application
 
