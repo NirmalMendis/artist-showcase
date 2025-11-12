@@ -1,3 +1,4 @@
+import albumRoutes from 'modules/album/album-routes';
 import { RouteObject, createBrowserRouter } from 'react-router';
 import AppLayout from '../layout/app-layout';
 
@@ -5,7 +6,7 @@ const appRoutes: RouteObject[] = [
   {
     path: '/',
     Component: AppLayout,
-    children: [],
+    children: [...albumRoutes],
   },
 ];
 

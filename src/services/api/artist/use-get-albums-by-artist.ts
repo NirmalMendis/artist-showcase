@@ -1,8 +1,8 @@
 import { type UseQueryResult, useQuery } from '@tanstack/react-query';
+import { TopAlbum } from 'types/album-types';
+import { Artist } from 'types/artist-type';
 import { QueryKeys } from '../../../constants/query-keys';
 import { apiService } from '../api-service';
-import type { TopAlbum } from '@/types/album-types';
-import type { Artist } from '@/types/artist-type';
 
 export type GetAlbumByArtistRequest = Pick<Artist, 'name' | 'mbid'>;
 
