@@ -5,6 +5,7 @@ import Spinner from 'components/ui/spinner';
 import { useState } from 'react';
 import useGetAlbumsByArtist from 'services/api/artist/use-get-albums-by-artist';
 import AlbumCard from '../../../components/album-card';
+import ErrorCard from '../../../components/error-card';
 
 const ListAlbumsPage = () => {
   const [page, setPage] = useState(1);
@@ -19,11 +20,7 @@ const ListAlbumsPage = () => {
   });
 
   if (error) {
-    return (
-      <Container centerContent py={8}>
-        <Text color="red.500">Error loading albums: {error.message}</Text>
-      </Container>
-    );
+    return <ErrorCard error={error} />;
   }
 
   const albumList = albums?.topalbums.album || [];

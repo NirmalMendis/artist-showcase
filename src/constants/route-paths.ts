@@ -2,7 +2,7 @@ const RoutePaths = {
   album: {
     index: 'albums',
     list: 'list',
-    view: 'view/:albumId',
+    view: 'view/:id',
   },
 };
 export default RoutePaths;

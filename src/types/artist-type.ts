@@ -1,4 +1,4 @@
-import { Image, Tags } from './generic-types';
+import { Image } from './generic-types';
 
 export interface Stats {
   listeners?: string;
@@ -30,6 +30,5 @@ export interface Artist {
   streamable?: string;
   ontour?: string;
   stats?: Stats;
-  tags?: Tags;
   bio?: Bio;
 }

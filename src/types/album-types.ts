@@ -1,4 +1,4 @@
-import { Image, Tags } from './generic-types';
+import { Image } from './generic-types';
 
 export interface Streamable {
   fulltrack?: string;
@@ -37,7 +37,6 @@ export interface Wiki {
 export interface Album {
   artist: string;
   mbid?: string;
-  tags?: Tags;
   playcount?: string;
   image?: Image[];
   tracks?: Tracks;
