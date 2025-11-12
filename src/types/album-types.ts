@@ -22,6 +22,7 @@ export interface Track {
   name: string;
   ['@attr']?: TrackAttr;
   artist?: TrackArtist;
+  image?: Image[];
 }
 
 export interface Tracks {
@@ -46,10 +47,6 @@ export interface Album {
   wiki?: Wiki;
 }
 
-export interface AlbumResponse {
-  album: Album;
-}
-
 export interface TopAlbumArtist {
   name: string;
   mbid?: string;
@@ -68,4 +65,13 @@ export interface TopAlbum {
   artist?: TopAlbumArtist;
   image?: Image[];
   ['@attr']?: TopAlbumAttr;
+}
+
+export interface AlbumSearchResult {
+  name: string;
+  artist: string;
+  url: string;
+  image?: Image[];
+  streamable: string;
+  mbid: string;
 }

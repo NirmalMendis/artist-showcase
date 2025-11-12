@@ -1,4 +1,5 @@
 import albumRoutes from 'modules/album/album-routes';
+import searchRoutes from 'modules/search/search-routes';
 import { RouteObject, createBrowserRouter } from 'react-router';
 import AppLayout from '../layout/app-layout';
 
@@ -6,7 +7,7 @@ const appRoutes: RouteObject[] = [
   {
     path: '/',
     Component: AppLayout,
-    children: [...albumRoutes],
+    children: [...albumRoutes, ...searchRoutes],
   },
 ];
 

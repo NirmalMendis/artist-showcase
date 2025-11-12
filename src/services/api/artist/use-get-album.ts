@@ -1,5 +1,5 @@
 import { type UseQueryResult, keepPreviousData, useQuery } from '@tanstack/react-query';
-import { AlbumResponse } from 'types/album-types';
+import { Album } from 'types/album-types';
 import { QueryKeys } from '../../../constants/query-keys';
 import { apiService } from '../api-service';
 
@@ -9,7 +9,9 @@ export type GetAlbumRequest = {
   mbid?: string;
 };
 
-export type GetAlbumResponse = AlbumResponse;
+export type GetAlbumResponse = {
+  album: Album;
+};
 
 const useGetAlbum = ({ artist, album, mbid }: GetAlbumRequest, enabled?: boolean): UseQueryResult<GetAlbumResponse, Error> => {
   return useQuery({

@@ -4,5 +4,9 @@ export const QueryKeys = {
   },
   album: {
     getInfo: 'album-get-info',
+    search: 'album-search',
+  },
+  track: {
+    search: 'track-search',
   },
 };

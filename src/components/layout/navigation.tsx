@@ -11,7 +11,7 @@ const Navigation = () => {
       </Heading>
       <HStack gap={4}>
         <RouterLink to="/">
-          <Text color="blue.600">Home</Text>
+          <Text color="blue.600">Search</Text>
         </RouterLink>
         <RouterLink to={`/${RoutePaths.album.index}/${RoutePaths.album.list}`}>
           <Text color="blue.600">Albums</Text>

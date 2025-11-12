@@ -1,6 +1,6 @@
 import { DefaultPageLimit } from 'constants/defaults';
 import { Container, SimpleGrid, Text, VStack } from '@chakra-ui/react';
-import CustomPagination from 'components/ui/pagination';
+import CustomPagination from 'components/ui/custom-pagination';
 import Spinner from 'components/ui/spinner';
 import { useState } from 'react';
 import useGetAlbumsByArtist from 'services/api/artist/use-get-albums-by-artist';
